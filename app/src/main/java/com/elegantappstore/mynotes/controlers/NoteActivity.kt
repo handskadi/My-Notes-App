@@ -1,4 +1,4 @@
-package com.elegantappstore.mynotes.Controlers
+package com.elegantappstore.mynotes.controlers
 
 import android.content.DialogInterface
 import android.content.Intent
@@ -8,7 +8,6 @@ import android.support.v7.app.AlertDialog
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
-import com.elegantappstore.mynotes.Models.Note
 import com.elegantappstore.mynotes.R
 import kotlinx.android.synthetic.main.activity_note.*
 
@@ -50,8 +49,8 @@ class NoteActivity : AppCompatActivity() {
                     when(which){
                         DialogInterface.BUTTON_POSITIVE -> {
                             val bundle = intent.extras
-                            var noteId = bundle.getInt("noteId")
-                            var dbManager = DbManager(this@NoteActivity)
+                            val noteId = bundle.getInt("noteId")
+                            val dbManager = DbManager(this@NoteActivity)
                             val selectionArgs = arrayOf(noteId.toString())
                             dbManager.delete("id=?",selectionArgs  )
                             Toast.makeText(this,"Note is Deleted",Toast.LENGTH_LONG).show()
@@ -68,9 +67,9 @@ class NoteActivity : AppCompatActivity() {
             }
 
             R.id.noteEdit -> {
-                var bundle = intent.extras
+                val bundle = intent.extras
 
-                var myId = bundle.getInt("noteId")
+                val myId = bundle.getInt("noteId")
                 val intent = Intent(this, AddNoteActivity::class.java)
                 intent.putExtra("id", myId)
                 intent.putExtra("description", noteNoteDescription.text)

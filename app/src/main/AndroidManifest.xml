@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Controlers.MainActivity">
+        <activity android:name=".controlers.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,8 +20,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
-        <activity android:name=".Controlers.NoteActivity" />
-        <activity android:name=".Controlers.AddNoteActivity"></activity>
+        <activity android:name=".controlers.NoteActivity" />
+        <activity android:name=".controlers.AddNoteActivity"></activity>
     </application>
 
 </manifest>

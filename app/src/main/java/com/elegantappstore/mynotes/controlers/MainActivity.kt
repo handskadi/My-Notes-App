@@ -1,5 +1,6 @@
-package com.elegantappstore.mynotes.Controlers
+package com.elegantappstore.mynotes.controlers
 
+import android.annotation.SuppressLint
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -11,13 +12,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.SearchView
-import com.elegantappstore.mynotes.Models.Note
+import com.elegantappstore.mynotes.models.Note
 import com.elegantappstore.mynotes.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.note_ticket.view.*
 
 class MainActivity : AppCompatActivity() {
-    var listOfNotes = ArrayList<Note>()
+    private var listOfNotes = ArrayList<Note>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         if (cursor.moveToFirst()){
             do {
                 val id = cursor.getInt(cursor.getColumnIndex("id"))
+                @Suppress("NAME_SHADOWING")
                 val title = cursor.getString(cursor.getColumnIndex("title"))
                 val description  = cursor.getString(cursor.getColumnIndex("description"))
                 val date = cursor.getString(cursor.getColumnIndex("date"))
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         val searchView = menu?.findItem(R.id.app_bar_search)?.actionView as SearchView
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView.setSearchableInfo(searchManager.getSearchableInfo(componentName))
-        searchView.setQueryHint("Search Now...")
+        searchView.queryHint = "Search Now..."
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 loadQuery("%$query%")
@@ -84,14 +86,11 @@ class MainActivity : AppCompatActivity() {
     }
     // End of Search View
 
-    inner class MyNotesAdapter: BaseAdapter {
-        var listOfNotesAdapter = ArrayList<Note>()
-        constructor(listOfNotesAdapter:ArrayList<Note>):super(){
-            this.listOfNotesAdapter=listOfNotesAdapter
-        }
+    inner class MyNotesAdapter(private var listOfNotesAdapter: ArrayList<Note>) : BaseAdapter() {
+        @SuppressLint("ViewHolder", "SetTextI18n", "InflateParams")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            var myView = layoutInflater.inflate(R.layout.note_ticket,null)
-            var myNote = listOfNotesAdapter[position]
+            val myView = layoutInflater.inflate(R.layout.note_ticket,null)
+            val myNote = listOfNotesAdapter[position]
             myView.mainNoteTitle.text = myNote.noteTitle
 
             if (myNote.noteDescription?.length!! >=30){
@@ -103,12 +102,12 @@ class MainActivity : AppCompatActivity() {
 
 
             // ---- Delete Note in the list view.
-            myView.mainDelete.setOnClickListener ( View.OnClickListener{
-                var dbManager = DbManager(this@MainActivity)
+            myView.mainDelete.setOnClickListener {
+                val dbManager = DbManager(this@MainActivity)
                 val selectionArgs = arrayOf(myNote.id.toString())
                 dbManager.delete("id=?" ,selectionArgs)
                 loadQuery("%")
-            })
+            }
 
             // ---- Go to other activity of Adding new note..
             myView.emptyLayer.setOnClickListener {
@@ -129,9 +128,9 @@ class MainActivity : AppCompatActivity() {
             }
 
             // update Button
-            myView.mainUpdate.setOnClickListener( View.OnClickListener{
+            myView.mainUpdate.setOnClickListener {
                 goToUpdate(myNote)
-            })
+            }
 
             return myView
         }
