@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">My Notes</string>
+    <string name="note_title_hint">Enter note title</string>
+    <string name="note_description_hint">Enter note details...</string>
+    <string name="add_note_bttn">Add Note</string>
+    <string name="add_menu_icon_txt">Add</string>
+    <string name="search_icon_tx">Search</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="note_is_added">note is added"</string>
+    <string name="can_not_add_note">can not add note</string>
+
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/andada</item>
+        <item>@font/averia_sans_libre_light</item>
+        <item>@font/biorhyme_extralight</item>
+        <item>@font/galdeano</item>
+        <item>@font/overpass_thin</item>
+    </array>
+</resources>

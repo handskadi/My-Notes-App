@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mes Notes</string>
+    <string name="note_title_hint">Entrez le titre..</string>
+    <string name="note_description_hint">Entrez les details de note..</string>
+    <string name="add_note_bttn">Ajoutez une notes</string>
+    <string name="search_icon_tx">"Recherche "</string>
+    <string name="edit">Modifier</string>
+    <string name="delete">Suprimer</string>
+</resources>

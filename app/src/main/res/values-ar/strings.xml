@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"ملاحظاتي "</string>
+    <string name="add_menu_icon_txt">أضف</string>
+    <string name="add_note_bttn">"أضف ملاحظة  "</string>
+    <string name="note_description_hint">أدخل تفاصيل الملاحظة ...</string>
+    <string name="note_title_hint">أدخل عنوان الملاحظة</string>
+    <string name="edit">"التعديل "</string>
+    <string name="search_icon_tx">البحث</string>
+    <string name="delete">حذف</string>
+</resources>
